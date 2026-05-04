@@ -33,6 +33,9 @@ spec:
 
         postgresql:
           enabled: true
+          primary:
+            podAnnotations:
+              istio.io/dataplane-mode: none
           auth:
             existingSecret: authentik-vault-secrets
             secretKeys:
