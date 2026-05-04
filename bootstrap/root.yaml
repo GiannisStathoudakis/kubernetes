@@ -11,6 +11,8 @@ spec:
             path: apps/metallb
           - app: vault
             path: apps/vault
+          - app: cert-manager
+            path: apps/cert-manager
 
   template:
     metadata:
