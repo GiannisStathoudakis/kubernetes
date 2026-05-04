@@ -31,6 +31,9 @@ spec:
                   name: authentik-vault-secrets
                   key: bootstrap_password
 
+        authentik:
+          secret_key: "managed-by-global-env"
+
         postgresql:
           enabled: true
           auth:
