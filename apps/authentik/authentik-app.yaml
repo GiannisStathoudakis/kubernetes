@@ -30,8 +30,6 @@ spec:
                 secretKeyRef:
                   name: authentik-vault-secrets
                   key: bootstrap_password
-            - name: AUTHENTIK_POSTGRESQL__SSLMODE
-              value: "disable"
 
         postgresql:
           enabled: true
@@ -41,8 +39,8 @@ spec:
               adminPasswordKey: postgresql-password
               userPasswordKey: postgresql-password
           primary:
-            service:
-              appProtocol: tcp
+            podAnnotations:
+              traffic.istio.io/excludeInboundPorts: "5432"
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik
