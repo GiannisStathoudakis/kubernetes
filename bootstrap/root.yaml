@@ -27,6 +27,8 @@ spec:
             path: apps/grafana
           - app: victoria
             path: apps/victoria
+          - app: kiali
+            path: apps/kiali
 
   template:
     metadata:
