@@ -30,6 +30,8 @@ spec:
                 secretKeyRef:
                   name: authentik-vault-secrets
                   key: bootstrap_password
+            - name: AUTHENTIK_POSTGRESQL__SSLMODE
+              value: "disable"
 
         postgresql:
           enabled: true
@@ -38,6 +40,9 @@ spec:
             secretKeys:
               adminPasswordKey: postgresql-password
               userPasswordKey: postgresql-password
+          primary:
+            service:
+              appProtocol: tcp
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik
