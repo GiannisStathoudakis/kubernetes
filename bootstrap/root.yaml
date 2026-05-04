@@ -13,6 +13,8 @@ spec:
             path: apps/vault
           - app: cert-manager
             path: apps/cert-manager
+          - app: istio
+            path: apps/istio
 
   template:
     metadata:
