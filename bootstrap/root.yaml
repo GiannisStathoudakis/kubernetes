@@ -23,6 +23,8 @@ spec:
             path: apps/rancher
           - app: longhorn
             path: apps/longhorn
+          - app: grafana
+            path: apps/grafana
 
   template:
     metadata:
