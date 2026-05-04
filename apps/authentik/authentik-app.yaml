@@ -16,7 +16,7 @@ spec:
         global:
           env:
             - name: AUTHENTIK_URL
-              value: "http://authentik.lab.local"
+              value: "http://authentik.lab.internal"
             - name: AUTHENTIK_SECRET_KEY
               valueFrom:
                 secretKeyRef:
