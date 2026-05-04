@@ -38,9 +38,7 @@ spec:
             secretKeys:
               adminPasswordKey: postgresql-password
               userPasswordKey: postgresql-password
-          primary:
-            podAnnotations:
-              traffic.istio.io/excludeInboundPorts: "5432"
+
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik
