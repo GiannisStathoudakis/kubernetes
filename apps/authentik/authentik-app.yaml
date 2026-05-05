@@ -30,6 +30,14 @@ spec:
                 secretKeyRef:
                   name: authentik-vault-secrets
                   key: bootstrap_password
+        
+        server:
+          podAnnotations:
+            sidecar.istio.io/rewriteAppHTTPProbers: "true"
+        
+        worker:
+          podAnnotations:
+            sidecar.istio.io/rewriteAppHTTPProbers: "true"
 
         postgresql:
           enabled: true
@@ -42,9 +50,9 @@ spec:
             service:
               ports:
                 postgresql: 5432
-              annotations:
-                "istio.io/app-protocol": "tcp"
-
+              appProtocol: "tcp"
+            podAnnotations:
+              traffic.istio.io/excludeInboundPorts: "5432"
   destination:
     server: https://kubernetes.default.svc
     namespace: authentik
