@@ -30,7 +30,9 @@ spec:
                 secretKeyRef:
                   name: authentik-vault-secrets
                   key: bootstrap_password
-        
+            - name: AUTHENTIK_POSTGRESQL__SSLMODE
+              value: "disable"
+
         server:
           podAnnotations:
             sidecar.istio.io/rewriteAppHTTPProbers: "true"
@@ -41,16 +43,21 @@ spec:
 
         postgresql:
           enabled: true
+          image:
+            registry: docker.io
+            repository: bitnami/postgresql
+            tag: 15-debian-11
           auth:
             existingSecret: authentik-vault-secrets
             secretKeys:
               adminPasswordKey: postgresql-password
               userPasswordKey: postgresql-password
+          
           primary:
             service:
               ports:
                 postgresql: 5432
-              appProtocol: "tcp"
+              appProtocol: tcp
             podAnnotations:
               traffic.istio.io/excludeInboundPorts: "5432"
   destination:
