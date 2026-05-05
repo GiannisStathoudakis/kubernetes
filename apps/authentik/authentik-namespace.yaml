@@ -4,3 +4,5 @@ metadata:
   name: authentik
   annotations:
     argocd.argoproj.io/sync-wave: "0"
+  labels:
+    istio.io/dataplane-mode: ambient

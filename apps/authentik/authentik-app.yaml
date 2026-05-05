@@ -38,6 +38,12 @@ spec:
             secretKeys:
               adminPasswordKey: postgresql-password
               userPasswordKey: postgresql-password
+          primary:
+            service:
+              ports:
+                postgresql: 5432
+              annotations:
+                "istio.io/app-protocol": "tcp"
 
   destination:
     server: https://kubernetes.default.svc
