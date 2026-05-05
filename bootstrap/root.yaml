@@ -31,6 +31,8 @@ spec:
             path: apps/kiali
           - app: authentik
             path: apps/authentik
+          - app: forgejo
+            path: apps/forgejo
 
   template:
     metadata:
