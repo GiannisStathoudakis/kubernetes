@@ -16,6 +16,7 @@ spec:
     - "vault.lab.internal"
     - "rancher.lab.internal"
     - "longhorn.lab.internal"
+    - "authentik.lab.internal"
   privateKey:
     algorithm: RSA
     encoding: PKCS1
