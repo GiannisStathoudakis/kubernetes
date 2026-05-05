@@ -27,7 +27,6 @@ spec:
               clientID: $argocd-oidc-secret:clientID
               clientSecret: $argocd-oidc-secret:clientSecret
               requestedScopes: ["openid", "profile", "email", "groups"]
-              rootCA: $argocd-oidc-secret:rootCA
 
         fullnameOverride: "argocd"
 
