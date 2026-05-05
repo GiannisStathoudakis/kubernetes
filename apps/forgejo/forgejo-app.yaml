@@ -16,8 +16,8 @@ spec:
         gitea:
           config:
             server:
-              ROOT_URL: "https://forgejo.lab.local/"
-              SSH_DOMAIN: "forgejo.lab.local"
+              ROOT_URL: "https://forgejo.lab.internal/"
+              SSH_DOMAIN: "forgejo.lab.internal"
             actions:
               ENABLED: true
           admin:
