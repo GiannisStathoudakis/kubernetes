@@ -9,6 +9,7 @@ spec:
     repoURL: https://victoriametrics.github.io/helm-charts/
     chart: victoria-metrics-agent
     targetRevision: 0.36.0
+  # 
     helm:
       values: |
         fullnameOverride: "vmagent"
@@ -36,10 +37,38 @@ spec:
                   target_label: __address__
                   regex: ([^:]+)(?::\d+)?;(\d+)
                   replacement: $1:$2
-                  
                 - source_labels: [__meta_kubernetes_service_name]
                   action: replace
                   target_label: job
+
+            # --- CILIUM AGENT METRICS ---
+            - job_name: 'cilium-agent'
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_label_k8s_app]
+                  action: keep
+                  regex: cilium
+                - source_labels: [__address__]
+                  action: replace
+                  regex: ([^:]+)(?::\d+)?
+                  replacement: $1:9090 # Default Cilium Prometheus port
+                  target_label: __address__
+
+            # --- HUBBLE METRICS ---
+            - job_name: 'hubble-metrics'
+              kubernetes_sd_configs:
+                - role: pod
+              relabel_configs:
+                - source_labels: [__meta_kubernetes_pod_label_k8s_app]
+                  action: keep
+                  regex: cilium
+                - source_labels: [__address__]
+                  action: replace
+                  regex: ([^:]+)(?::\d+)?
+                  replacement: $1:9965 # Default Hubble Prometheus port
+                  target_label: __address__
+
             # --- LONGHORN METRICS ---
             - job_name: 'longhorn'
               kubernetes_sd_configs:
@@ -52,7 +81,6 @@ spec:
                   action: replace
                   target_label: job
         
-        #Resources limit
         resources:
           requests:
             cpu: 50m
