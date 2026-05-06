@@ -23,12 +23,12 @@ spec:
             url: https://argocd.lab.internal
             oidc.config: |
               name: Authentik
-              issuer: https://authentik.lab.internal/application/o/argocd/
+              issuer: http://authentik-helm-release-server.authentik.svc.cluster.local/application/o/argocd/
               clientID: $argocd-oidc-secret:clientID
               clientSecret: $argocd-oidc-secret:clientSecret
               requestedScopes: ["openid", "profile", "email", "groups"]
           rbac:
-            policy.default: role:readonly
+            policy.default: ''
             policy.csv: |
               g, authentik Admins, role:admin
 
