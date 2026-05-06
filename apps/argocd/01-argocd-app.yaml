@@ -27,6 +27,10 @@ spec:
               clientID: $argocd-oidc-secret:clientID
               clientSecret: $argocd-oidc-secret:clientSecret
               requestedScopes: ["openid", "profile", "email", "groups"]
+          rbac:
+            policy.default: role:readonly
+            policy.csv: |
+              g, authentik Admins, role:admin
 
         fullnameOverride: "argocd"
 
