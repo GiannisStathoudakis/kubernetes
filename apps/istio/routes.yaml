@@ -67,7 +67,7 @@ spec:
   hostnames: ["longhorn.lab.internal"]
   rules:
   - backendRefs:
-    - name: authentik-embedded-outpost
+    - name: ak-outpost-authentik-proxy
       namespace: authentik
       port: 9000
 ---
