@@ -63,10 +63,10 @@ spec:
               ports:
                 postgresql: 5432
               appProtocol: tcp
+            podLabels:
+              istio.io/dataplane-mode: "none"
             podAnnotations:
               sidecar.istio.io/rewriteAppHTTPProbers: "true"
-              traffic.istio.io/excludeInboundPorts: "5432"
-              traffic.istio.io/excludeOutboundPorts: "5432"
 
         # Embed custom Istio rules directly into the Helm release
         additionalObjects:
