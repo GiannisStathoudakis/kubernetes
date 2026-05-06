@@ -36,10 +36,12 @@ spec:
         server:
           podAnnotations:
             sidecar.istio.io/rewriteAppHTTPProbers: "true"
+            traffic.istio.io/excludeOutboundPorts: "5432"
 
         worker:
           podAnnotations:
             sidecar.istio.io/rewriteAppHTTPProbers: "true"
+            traffic.istio.io/excludeOutboundPorts: "5432"
 
         postgresql:
           enabled: true
