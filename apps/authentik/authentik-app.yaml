@@ -44,10 +44,6 @@ spec:
 
         postgresql:
           enabled: true
-          image:
-            registry: docker.io
-            repository: library/postgres
-            tag: "18-bookworm" 
           
           auth:
             username: authentik
