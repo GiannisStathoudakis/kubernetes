@@ -24,7 +24,6 @@ spec:
         configs:
           cm:
             url: https://argocd.lab.internal
-            # 2. ADD THIS TO BYPASS THE TLS CHECK
             dex.config: |
               connectors:
               - type: oidc
