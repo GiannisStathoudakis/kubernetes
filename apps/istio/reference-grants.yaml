@@ -1,0 +1,15 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-outpost-cross-namespace
+  namespace: authentik # MUST be in the same namespace as the Service
+spec:
+  from:
+    # Allow the Longhorn Route
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      namespace: longhorn-system
+  to:
+    - group: ""
+      kind: Service
+      name: ak-outpost-authentik-proxy
