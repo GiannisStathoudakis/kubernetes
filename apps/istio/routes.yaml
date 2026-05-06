@@ -104,8 +104,9 @@ spec:
   hostnames: ["kiali.lab.internal"]
   rules:
   - backendRefs:
-    - name: kiali
-      port: 20001
+    - name: ak-outpost-authentik-proxy
+      namespace: authentik
+      port: 9000
 ---
 # -----------------------------
 # Authentik Routing
