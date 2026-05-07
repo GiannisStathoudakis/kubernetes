@@ -25,7 +25,7 @@ spec:
               # 1. Register the runner dynamically
               forgejo-runner register \
                 --no-interactive \
-                --instance https://forgejo.lab.internal/ \
+                --instance http://forgejo-http.forgejo-system.svc.cluster.local:3000/ \
                 --token $(cat /secrets/token) \
                 --name k8s-ambient-runner \
                 --labels ubuntu-latest,alpine-base
