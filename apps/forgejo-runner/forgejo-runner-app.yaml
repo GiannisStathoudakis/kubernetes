@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forgejo-runner-controller
+  namespace: forgejo-runners
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgejo-runner
+  template:
+    metadata:
+      labels:
+        app: forgejo-runner
+    spec:
+      serviceAccountName: forgejo-runner-sa
+      containers:
+        - name: runner
+          image: code.forgejo.org/forgejo/runner:3.4.1
+          command: ["sh", "-c"]
+          args:
+            - |
+              # 1. Register the runner dynamically
+              forgejo-runner register \
+                --no-interactive \
+                --instance https://forgejo.lab.internal/ \
+                --token $(cat /secrets/token) \
+                --name k8s-ambient-runner \
+                --labels ubuntu-latest,alpine-base
+              
+              # 2. Start the daemon
+              forgejo-runner daemon
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config.yaml
+              subPath: config.yaml
+            - name: token-volume
+              mountPath: /secrets
+              readOnly: true
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: forgejo-runner-config
+        - name: token-volume
+          secret:
+            secretName: forgejo-runner-token
