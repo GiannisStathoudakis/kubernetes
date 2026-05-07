@@ -22,10 +22,6 @@ spec:
               - "authentik.lab.internal"
           
         configs:
-          knownHosts:
-            data:
-              ssh_known_hosts: |
-                forgejo-ssh.forgejo-system.svc.cluster.local ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCnNl2ohw5F0CHzOf5Wc7B5M89AcuR3FWg9ZpxoMya65DOAaL+WXhobjR77UWb2xTpD69yJBWh+hbdfyUJKHH+J5efs0nxiAWchKndJ5EGIcSt/TBl9kjbf4Za0QWC1SSX/ybb8Fci+YiG8weN8nryuUPS7Bm/LxzC52yheNBnf56oJwd7jXRPj37ICN0kiQevSev6UvjkeIKlOcnKpDI/kU2B4F09W6xtVxWcJ3eVHSaDQVb5Dz1myQGHeDmeH95WqyUgZITIz/eg1D2EGK1qQ/bznEjKtSa5TUhsarsqmmgoBGVeIdflyAP9f6nVbSR7vgtrrSoQdVLf9YkrO26cG7JN5JwesQO+38gBULPZGw5owitrq+jwVxolHXY7vBPN4LzGc8Wx0kULIan/bcxDmtHS9xdw4sf8uKg619b1Sq1xdzFUxpmbo7OnGjMQ1iVymadQYV+HmLMfUGGEoMxhfRIQYBt86BQKazjffvnno6tA0IuFnZgJwlL6C+xzOcTi8B92v6rOUWX1lZF6JMNRk2v/31Z+PkO0wVuoTRT4EUShrEUXB1pDOTKNj5bKiUqpY2BdcPPzdDO3eLE8NF2zNNVNsEC1s5Ow7VdaAYlvc1eR2B2+oNyIZXQgtrbSsi5eSf1c2dt+yGhsyjsef7pE+r09xv5ctBVECtznnXe6d6Q==
           cm:
             url: https://argocd.lab.internal
             oidc.config: |
