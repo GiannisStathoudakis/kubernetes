@@ -23,3 +23,7 @@ spec:
     remoteRef:
       key: secret/argocd
       property: clientId
+  - secretKey: rootCA
+    remoteRef:
+      key: secret/argocd
+      property: rootCA
