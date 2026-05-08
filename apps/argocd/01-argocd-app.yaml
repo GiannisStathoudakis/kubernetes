@@ -61,6 +61,8 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8082"
+            extraArgs:
+              - --insecure
 
         repoServer:
           metrics:
@@ -69,6 +71,8 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8084"
+          extraArgs:
+            - --insecure
 
         applicationSet:
           metrics:
