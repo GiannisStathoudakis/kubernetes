@@ -17,6 +17,9 @@ spec:
     - "rancher.lab.internal"
     - "longhorn.lab.internal"
     - "authentik.lab.internal"
+    - "grafana.lab.internal"
+    - "forgejo.lab.internal"
+    - "kiali.lab.internal"
   privateKey:
     algorithm: RSA
     encoding: PKCS1
