@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: spring-monorepo-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: ssh://git@forgejo-ssh.forgejo-system.svc.cluster.local/admin1/Testing.git
+        revision: HEAD
+        directories:
+          - path: '*/manifest' 
+  template:
+    metadata:
+      name: '{{path.basename}}' 
+    spec:
+      project: default
+      source:
+        repoURL: ssh://git@forgejo-ssh.forgejo-system.svc.cluster.local/admin1/Testing.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: spring-apps
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
