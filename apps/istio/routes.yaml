@@ -147,17 +147,21 @@ spec:
 # -----------------------------
 # Forgejo SSH Routing
 # -----------------------------
-apiVersion: gateway.networking.k8s.io/v1alpha2
-kind: TCPRoute
+apiVersion: networking.istio.io/v1
+kind: VirtualService
 metadata:
   name: forgejo-ssh-route
   namespace: forgejo-system
 spec:
-  parentRefs:
-  - name: lab-gateway
-    namespace: istio-system
-    sectionName: ssh
-  rules:
-  - backendRefs:
-    - name: forgejo-ssh
-      port: 22
+  gateways:
+  - istio-system/lab-gateway
+  hosts:
+  - "*"
+  tcp:
+  - match:
+    - port: 22
+    route:
+    - destination:
+        host: forgejo-ssh.forgejo-system.svc.cluster.local
+        port:
+          number: 22
