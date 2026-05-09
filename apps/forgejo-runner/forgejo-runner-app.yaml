@@ -22,10 +22,6 @@ spec:
           env:
             - name: GITEA_ACTIONS_DEFAULT_ACTIONS_URL
               value: "https://github.com"
-            - name: NODE_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
           command: ["sh", "-c"]
           args:
             - |
