@@ -22,6 +22,10 @@ spec:
           env:
             - name: GITEA_ACTIONS_DEFAULT_ACTIONS_URL
               value: "https://github.com"
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
           command: ["sh", "-c"]
           args:
             - |
@@ -29,10 +33,9 @@ spec:
                 --no-interactive \
                 --instance http://forgejo-http.forgejo-system.svc.cluster.local:3000/ \
                 --token $(cat /secrets/token) \
-                --name k8s-ambient-runner \
-                --labels ubuntu-latest
-                            
-              # 2. Start the daemon
+                --name "${NODE_NAME}" \
+                --labels "ubuntu-latest:docker.io/catthehacker/ubuntu:act-latest"
+              
               forgejo-runner daemon --config /config.yaml
           volumeMounts:
             - name: config-volume
