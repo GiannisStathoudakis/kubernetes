@@ -25,14 +25,14 @@ spec:
           command: ["sh", "-c"]
           args:
             - |
-              # 1. Register the runner dynamically
+              # Use the unique pod name for registration
               forgejo-runner register \
                 --no-interactive \
                 --instance http://forgejo-http.forgejo-system.svc.cluster.local:3000/ \
                 --token $(cat /secrets/token) \
-                --name k8s-ambient-runner \
-                --labels ubuntu-latest,alpine-base
-              
+                --name "${NODE_NAME}" \
+                --labels "ubuntu-latest:docker.io/gitea/runner-images:ubuntu-22.04"
+                            
               # 2. Start the daemon
               forgejo-runner daemon
           volumeMounts:
