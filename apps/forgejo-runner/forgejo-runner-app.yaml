@@ -33,7 +33,7 @@ spec:
                 --labels ubuntu-latest
                             
               # 2. Start the daemon
-              forgejo-runner daemon
+              forgejo-runner daemon --config /config.yaml
           volumeMounts:
             - name: config-volume
               mountPath: /config.yaml
