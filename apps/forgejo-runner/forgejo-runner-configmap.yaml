@@ -11,7 +11,6 @@ data:
       capacity: 5
       labels:
         - "ubuntu-latest:docker.io/gitea/runner-images:ubuntu-22.04"
-        - "alpine-base:docker.io/catthehacker/container-architecture-alpine:3.19"
     
     container:
       network: ""
