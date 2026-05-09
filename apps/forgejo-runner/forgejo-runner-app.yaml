@@ -19,6 +19,9 @@ spec:
       containers:
         - name: runner
           image: code.forgejo.org/forgejo/runner:3.4.1
+          env:
+            - name: GITEA_ACTIONS_DEFAULT_ACTIONS_URL
+              value: "https://github.com"
           command: ["sh", "-c"]
           args:
             - |
@@ -41,11 +44,11 @@ spec:
               readOnly: true
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
+              cpu: "250m"
+              memory: "512Mi"
             limits:
-              cpu: "300m"
-              memory: "256Mi"
+              cpu: "500m"
+              memory: "1Gi"
       volumes:
         - name: config-volume
           configMap:
