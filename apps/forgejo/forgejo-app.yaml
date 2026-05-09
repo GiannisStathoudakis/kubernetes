@@ -22,8 +22,8 @@ spec:
               ENABLED: true
           admin:
             existingSecret: "forgejo-auth"
-        ssh:
-          service:
+        service:
+          ssh:
             type: LoadBalancer
             port: 22
         persistence:
