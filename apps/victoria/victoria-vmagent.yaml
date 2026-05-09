@@ -13,7 +13,8 @@ spec:
     helm:
       values: |
         fullnameOverride: "vmagent"
-        
+        extraArgs:
+          - "-opentelemetry.enabled=true" # Enable OTLP ingestion
         remoteWrite:
           - url: "http://victoria-metrics-server.victoria.svc.cluster.local:8428/api/v1/write"
 
